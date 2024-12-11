@@ -8,14 +8,17 @@ const PORT = process.env.PORT || 3000;
 // Middleware for parsing JSON
 app.use(express.json());
 
-// Correct MongoDB URI
-const MONGO_URI = "mongodb://localhost:27017/dummy"; // or "mongodb://127.0.0.1:27017/dummy"
+// MongoDB connection URI (replace with your actual MongoDB URI if using a cloud database)
+const MONGO_URI =
+  // process.env.MONGO_URI ||
+  "mongodb+srv://ashiquealisoftbuilders:c1K5dUmuEpCktGN1@cluster0.z21td.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"; // Use environment variable if possible
 
+// Connect to MongoDB
 mongoose.connect(MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  // useNewUrlParser: true,
+  // useUnifiedTopology: true,
 });
-
+// c1K5dUmuEpCktGN1;
 mongoose.connection.on("connected", () => {
   console.log("Connected to MongoDB");
 });
@@ -33,9 +36,12 @@ const Message = mongoose.model("Message", messageSchema);
 
 // Route to add a "Hello World" message to the database
 app.get("/add", async (req, res) => {
+  console.log("====================================");
+  console.log("hello");
+  console.log("====================================");
   try {
-    const message = new Message({ text: "Hello World" });
-    await message.save();
+    // const message = new Message({ text: "Hello World" });
+    // await message.save();
     res.send("Hello World saved to database!");
   } catch (err) {
     res.status(500).send(err.message);
@@ -44,12 +50,14 @@ app.get("/add", async (req, res) => {
 
 // Route to retrieve all messages
 app.get("/", async (req, res) => {
-  try {
-    const messages = await Message.find();
-    res.json(messages);
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
+  // try {
+  //   const messages = await Message.find();
+  //   res.json(messages);
+  // } catch (err) {
+  //   res.status(500).send(err.message);
+  // }
+
+  res.status(200).send({messge: "hi tehre"});
 });
 
 // Start the server
