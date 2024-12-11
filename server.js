@@ -42,7 +42,7 @@ app.get("/add", async (req, res) => {
   try {
     // const message = new Message({ text: "Hello World" });
     // await message.save();
-    res.send("Hello World saved to database!");
+    res.send("Hello World saved to database333333333333!");
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -57,7 +57,7 @@ app.get("/", async (req, res) => {
   //   res.status(500).send(err.message);
   // }
 
-  res.status(200).send({messge: "hi tehre"});
+  res.status(200).send({ messge: "hi tehre" });
 });
 
 // Start the server
